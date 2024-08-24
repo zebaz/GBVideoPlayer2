@@ -47,13 +47,11 @@ $(OUT)/frames: $(OUT)/video.mp4
 	@echo $(TITLE)Extracting frames...$(TITLE_END)
 	-@rm -rf $@
 	mkdir -p $@
-	$(FFMPEG) -i $^ -coder "raw" $@/%05d.tga
+	$(FFMPEG) -rle 0 -i $^ $@/%05d.tga
 
 $(OUT)/video.mp4: $(SOURCE)
 	@echo $(TITLE)Resizing video...$(TITLE_END)
-	$(FFMPEG) -i $^ -vf scale=-2:144 $@.tmp.mp4
-	$(FFMPEG) -i $@.tmp.mp4 -filter:v "crop=160:144" $@
-	rm $@.tmp.mp4
+	$(FFMPEG) -stats -hide_banner -i $^ -filter:v "scale=-2:144,crop=160:144" $@
 	
 clean:
 	rm -rf output
