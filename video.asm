@@ -1,25 +1,25 @@
 INCLUDE "gbhw.asm"
 
-MBC5_bank_low EQU $2000
-MBC5_bank_high EQU $3000
+DEF MBC5_bank_low EQU $2000
+DEF MBC5_bank_high EQU $3000
 
-audio_buffer EQU $c100
-line_buffer EQU ((audio_buffer >> 8) * $101)
+DEF audio_buffer EQU $c100
+DEF line_buffer EQU ((audio_buffer >> 8) * $101)
 
-current_line EQU $94 ; For backup, current_line is stored in SP
-current_bank EQU $96 ; For backup, current_bank is stored in b (Except for the 9th bit)
+DEF current_line EQU $94 ; For backup, current_line is stored in SP
+DEF current_bank EQU $96 ; For backup, current_bank is stored in b (Except for the 9th bit)
 
 
-frame_repeat EQU $a0
+DEF frame_repeat EQU $a0
 ; Address to jump to on repeat
-repeat_bank EQU $a1
-repeat_line EQU $a3
+DEF repeat_bank EQU $a1
+DEF repeat_line EQU $a3
 
-audio_bank EQU $a5 ; Since audio isn't that big, we use only one byte for bank number
-audio_address EQU $a6
-first_sample_backup EQU $a8
+DEF audio_bank EQU $a5 ; Since audio isn't that big, we use only one byte for bank number
+DEF audio_address EQU $a6
+DEF first_sample_backup EQU $a8
 
-compression_jr EQU $fd
+DEF compression_jr EQU $fd
 
 
 SECTION "Player", ROM0[0]
