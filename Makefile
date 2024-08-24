@@ -51,8 +51,8 @@ $(OUT)/frames: $(OUT)/video.mp4
 
 $(OUT)/video.mp4: $(SOURCE)
 	@echo $(TITLE)Resizing video...$(TITLE_END)
-	$(FFMPEG) -i $^ -c:v rawvideo  -vf scale=-2:144 $@.tmp.mp4
-	$(FFMPEG) -i $@.tmp.mp4 -c:v rawvideo  -filter:v "crop=160:144" $@
+	$(FFMPEG) -i $^ -vf scale=-2:144 $@.tmp.mp4
+	$(FFMPEG) -i $@.tmp.mp4 -filter:v "crop=160:144" $@
 	rm $@.tmp.mp4
 	
 clean:
