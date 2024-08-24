@@ -47,7 +47,7 @@ $(OUT)/frames: $(OUT)/video.mp4
 	@echo $(TITLE)Extracting frames...$(TITLE_END)
 	-@rm -rf $@
 	mkdir -p $@
-	$(FFMPEG) -rle 0 -i $^ $@/%05d.tga
+	$(FFMPEG) -i $^ -rle 0 $@/%05d.tga
 
 $(OUT)/video.mp4: $(SOURCE)
 	@echo $(TITLE)Resizing video...$(TITLE_END)
